@@ -13,7 +13,7 @@
         <p>{{$show->content}}</p>
         <hr class="my-4">
        <div class="d-flex">
-            <a class="btn btn-success btn-lg mx-2" href="articles/{{$show->id}}/edit" role="button">Edit</a>
+            <a class="btn btn-success btn-lg mx-2" href="/articles/{{$show->id}}/edit" role="button">Edit</a>
             <form action="articles/{{$show->id}}" method="POST">
                 @csrf
                 @method('DELETE')

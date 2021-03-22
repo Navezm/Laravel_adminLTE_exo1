@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('author')->only(['edit', 'destroy', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -64,7 +68,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $edit = $article;
+        return view('articleEdit',compact('edit'));
     }
 
     /**
@@ -76,7 +81,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $updateEntry = $article;
+        $updateEntry->title = $request->title;
+        $updateEntry->content = $request->content;
+        $updateEntry->save();
+        return redirect('articles');
     }
 
     /**
@@ -87,6 +96,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect('article');
     }
 }

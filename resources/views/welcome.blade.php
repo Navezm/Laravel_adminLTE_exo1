@@ -37,8 +37,9 @@
                 </div>
             @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <table class="table">
+            <div class="container">
+                <h1 class="text-center my-4">All Articles on the website</h1>
+                <table class="table border">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
