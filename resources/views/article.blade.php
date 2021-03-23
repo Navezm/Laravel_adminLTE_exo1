@@ -14,6 +14,7 @@
         <th scope="col">Title</th>
         <th scope="col">Author</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,17 @@
             <td>
                 <a class="btn btn-info" href="articles/{{$item->id}}">Details</a>
             </td>
+            @can('deletePost', $item)
+              <td>
+                <form action="/articles/{{$item->id}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger" type="submit">Delete</button>
+                </form>
+              </td>
+            @else
+              <td></td>
+            @endcan
         </tr>
       @endforeach
     </tbody>
