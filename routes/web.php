@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -29,3 +30,4 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 Route::resource('articles', ArticleController::class);
+Route::resource('users', UserController::class);

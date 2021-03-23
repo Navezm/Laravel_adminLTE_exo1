@@ -251,6 +251,11 @@ return [
             ]
         ],
         [
+            'text'        => 'Users',
+            'url'         => '/users',
+            'icon'        => 'fas fa-user',
+        ],
+        [
             'text'        => 'Back to Website',
             'url'         => '/',
             'icon'        => 'fas fa-pager',

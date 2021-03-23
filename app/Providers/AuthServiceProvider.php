@@ -29,5 +29,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('deletePost',function(User $user, $post){
             return $user->id == $post->user_id;
         });
+
+        Gate::define('deleteUser',function(User $user, $profile){
+            if ($user->role_id == 2 && $profile->role_id != 2) {
+                return true;
+            } else {
+                return false;
+            }
+        });
     }
 }
