@@ -47,6 +47,14 @@
                       <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputPassword1">Mail Subject</label>
+                        <select class="form-control" name="subject_id" id="">
+                            @foreach ($subjects as $item)
+                                <option value="{{$item->id}}">{{$item->subject}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
                       <label for="exampleInputPassword1">Content</label>
                       <textarea name="content" class="form-control" id="" cols="30" rows="8"></textarea>
                     </div>

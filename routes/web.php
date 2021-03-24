@@ -30,6 +30,7 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
+Route::get('/bo/emails', [MailController::class,'backOffice']);
 Route::resource('articles', ArticleController::class);
 Route::resource('users', UserController::class);
 Route::resource('mails', MailController::class);

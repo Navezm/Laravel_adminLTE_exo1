@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            SubjectsSeeder::class
             ]);
         Article::factory()->count(15)->create();
     }

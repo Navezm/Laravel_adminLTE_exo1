@@ -256,6 +256,11 @@ return [
             'icon'        => 'fas fa-user',
         ],
         [
+            'text'        => 'Emails',
+            'url'         => '/bo/emails',
+            'icon'        => 'fas fa-envelope',
+        ],
+        [
             'text'        => 'Back to Website',
             'url'         => '/',
             'icon'        => 'fas fa-pager',

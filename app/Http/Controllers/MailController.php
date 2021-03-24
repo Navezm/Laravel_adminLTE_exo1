@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendEmail;
+use App\Models\EmailSubject;
 use App\Models\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail as FacadesMail;
@@ -16,7 +17,15 @@ class MailController extends Controller
      */
     public function index()
     {
-        return view('pages.contact.contact');
+        $subjects = EmailSubject::all();
+        return view('pages.contact.contact',compact('subjects'));
+    }
+
+    public function backOffice()
+    {
+        $emails = Mail::all();
+        $subjects = EmailSubject::all();
+        return view('mailBo',compact('emails', 'subjects'));
     }
 
     /**
@@ -26,7 +35,7 @@ class MailController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -39,17 +48,19 @@ class MailController extends Controller
     {
         $request->validate([
             'email' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'subject' => 'required'
         ]);
 
         $newEntry = new Mail;
         $newEntry->email = $request->email;
+        $newEntry->subject_id = $request->subject_id;
         $newEntry->content = $request->content;
         $newEntry->save();
 
         // Envoi Mail
-        FacadesMail::to('navez.martin@gmail.com')->send(new SendEmail($request));
-        
+        // FacadesMail::to('navez.martin@gmail.com')->send(new SendEmail($request));
+
         return redirect()->back();
     }
 
