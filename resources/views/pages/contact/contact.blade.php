@@ -39,29 +39,19 @@
 
             
             <div class="container">
-                <div>
-                    <a class="btn btn-outline-secondary" href="/mails">Contact Us</a>
-                </div>
-                <h1 class="text-center my-4">All Articles on the website</h1>
-                <table class="table border">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Article</th>
-                        <th scope="col">Author</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($articles as $item)
-                        <tr>
-                            <th scope="row">{{$item->id}}</th>
-                            <td>{{$item->title}}</td>
-                            <td>{{$item->users->name}}</td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                </table>
-            </div>
+                <h1>Contact Us</h1>
+                <form action="/mails" method="POST">
+                    @csrf
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Content</label>
+                      <textarea name="content" class="form-control" id="" cols="30" rows="8"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
 
