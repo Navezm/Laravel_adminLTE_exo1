@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\EmailSubject;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,6 +12,7 @@ class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $infos;
+    public $subjectName;
     /**
      * Create a new message instance.
      *
@@ -18,7 +20,7 @@ class SendEmail extends Mailable
      */
     public function __construct($data)
     {
-        // dd($data);
+        $this->subjectName = EmailSubject::find($data->subject_id);
         $this->infos = $data;
     }
 
@@ -29,6 +31,6 @@ class SendEmail extends Mailable
      */
     public function build()
     {
-        return $this->from($this->infos->email)->view('template.templateEmail')->subject($this->infos->subjects->subject)->with(['customerEmail' => $this->infos->email, 'content' => $this->infos->content]);
+        return $this->from($this->infos->email)->view('template.templateEmail')->subject($this->subjectName->subject)->with(['customerEmail' => $this->infos->email, 'content' => $this->infos->content]);
     }
 }

@@ -47,10 +47,10 @@
                       <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Mail Subject</label>
+                        <label>Mail Subject</label>
                         <select class="form-control" name="subject_id" id="">
                             @foreach ($subjects as $item)
-                                <option value="{{$item->id}}">{{$item->subject}}</option>
+                                <option name="subject_id" value="{{$item->id}}">{{$item->subject}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -46,11 +46,13 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'content' => 'required',
-            'subject' => 'required'
-        ]);
+        // dd($request);
+        // $request->validate([
+        //     'email' => 'required',
+        //     'content' => 'required',
+        //     'subject_id' => 'required',
+        //     'subject' => 'required'
+        // ]);
 
         $newEntry = new Mail;
         $newEntry->email = $request->email;
@@ -59,7 +61,7 @@ class MailController extends Controller
         $newEntry->save();
 
         // Envoi Mail
-        // FacadesMail::to('navez.martin@gmail.com')->send(new SendEmail($request));
+        FacadesMail::to('navez.martin@gmail.com')->send(new SendEmail($request));
 
         return redirect()->back();
     }
