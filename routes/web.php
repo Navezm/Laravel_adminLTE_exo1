@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\NewsletterController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,4 @@ Route::get('/bo/emails', [MailController::class,'backOffice']);
 Route::resource('articles', ArticleController::class);
 Route::resource('users', UserController::class);
 Route::resource('mails', MailController::class);
+Route::resource('newsletters', NewsletterController::class);

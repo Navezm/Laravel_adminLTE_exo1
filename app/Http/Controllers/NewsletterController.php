@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\SendEmail;
-use App\Models\EmailSubject;
-use App\Models\Mail;
+use App\Mail\SendNewsletter;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail as FacadesMail;
+use Illuminate\Support\Facades\Mail;
 
-class MailController extends Controller
+class NewsletterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +17,7 @@ class MailController extends Controller
      */
     public function index()
     {
-        $subjects = EmailSubject::all();
-        return view('pages.contact.contact',compact('subjects'));
-    }
-
-    public function backOffice()
-    {
-        $emails = Mail::all();
-        $subjects = EmailSubject::all();
-        return view('mailBo',compact('emails', 'subjects'));
+        //
     }
 
     /**
@@ -35,7 +27,7 @@ class MailController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -47,19 +39,14 @@ class MailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required',
-            'content' => 'required',
-            'subject_id' => 'required',
+            'email' => 'required'
         ]);
 
-        $newEntry = new Mail;
+        $newEntry = new Newsletter;
         $newEntry->email = $request->email;
-        $newEntry->subject_id = $request->subject_id;
-        $newEntry->content = $request->content;
         $newEntry->save();
 
-        // Envoi Mail
-        FacadesMail::to('navez.martin@gmail.com')->send(new SendEmail($request));
+        Mail::to($request->email)->send(new SendNewsletter($request));
 
         return redirect()->back();
     }
@@ -67,33 +54,33 @@ class MailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Mail  $mail
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function show(Mail $mail)
+    public function show(Newsletter $newsletter)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Mail  $mail
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Mail $mail)
+    public function edit(Newsletter $newsletter)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Mail  $mail
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mail $mail)
+    public function update(Request $request, Newsletter $newsletter)
     {
         //
     }
@@ -101,10 +88,10 @@ class MailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Mail  $mail
+     * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mail $mail)
+    public function destroy(Newsletter $newsletter)
     {
         //
     }

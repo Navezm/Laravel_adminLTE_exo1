@@ -240,7 +240,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'List',
-                    'url'         => 'articles',
+                    'url'  => 'articles',
                     'icon' => 'fab fa-buffer'
                 ],
                 [

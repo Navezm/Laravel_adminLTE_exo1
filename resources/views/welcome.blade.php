@@ -39,8 +39,16 @@
 
             
             <div class="container">
-                <div>
-                    <a class="btn btn-outline-secondary" href="/mails">Contact Us</a>
+                <div class="d-flex">
+                    <a class="btn btn-outline-secondary mr-3" href="/mails">Contact Us</a>
+                    <div class="border rounded">
+                        <form action="/newsletters" method="POST">
+                            @csrf
+                            <span>Subscribe to the newsletter:</span>
+                            <input type="email" name="email">
+                            <button class="btn btn-outline-success" type="submit">Subscribe</button>
+                        </form>
+                    </div>
                 </div>
                 <h1 class="text-center my-4">All Articles on the website</h1>
                 <table class="table border">
