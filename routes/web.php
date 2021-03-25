@@ -32,6 +32,9 @@ Route::get('/home', function() {
 })->name('home')->middleware('auth');
 
 Route::get('/bo/emails', [MailController::class,'backOffice']);
+Route::get('/subscribe', [NewsletterController::class,'show']);
+Route::post('/subscribeSend', [NewsletterController::class,'storeSubscribe']);
+
 Route::resource('articles', ArticleController::class);
 Route::resource('users', UserController::class);
 Route::resource('mails', MailController::class);

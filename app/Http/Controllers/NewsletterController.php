@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\SendEmail;
 use App\Mail\SendNewsletter;
+use App\Mail\SendSubscribe;
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -59,7 +60,14 @@ class NewsletterController extends Controller
      */
     public function show(Newsletter $newsletter)
     {
-        //
+        return view('pages.inscription.inscription');
+    }
+
+    public function storeSubscribe(Request $request)
+    {
+        Mail::to($request->email)->send(new SendSubscribe($request));
+
+        return redirect()->back();
     }
 
     /**

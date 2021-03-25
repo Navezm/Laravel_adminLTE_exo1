@@ -39,38 +39,23 @@
 
             
             <div class="container">
-                <div class="d-flex">
-                    <a class="btn btn-outline-secondary mr-3" href="/mails">Contact Us</a>
-                    <div class="border rounded">
-                        <form action="/newsletters" method="POST">
-                            @csrf
-                            <span>Subscribe to the newsletter:</span>
-                            <input type="email" name="email">
-                            <button class="btn btn-outline-success" type="submit">Subscribe</button>
-                        </form>
+                <h1 class="text-center">Inscription</h1>
+                <form method="POST" action="/subscribeSend">
+                    @csrf
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" name="name" class="form-control">
                     </div>
-                    <a class="btn btn-outline-secondary ml-3" href="/subscribe">Subscribe</a>
-                </div>
-                <h1 class="text-center my-4">All Articles on the website</h1>
-                <table class="table border">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Article</th>
-                        <th scope="col">Author</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($articles as $item)
-                        <tr>
-                            <th scope="row">{{$item->id}}</th>
-                            <td>{{$item->title}}</td>
-                            <td>{{$item->users->name}}</td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                </table>
-            </div>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
 
